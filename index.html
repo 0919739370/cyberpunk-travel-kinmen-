@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER-TRAVEL | 個人旅行相簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <div class="container">
+        <header class="glass-card">
+            <h1 class="neon-text">NEON TRAVELER</h1>
+            <p>金門紀錄 · 2026 數位足跡</p>
+        </header>
+
+        <main class="gallery-grid">
+            <div class="glass-card photo-frame">
+                <img src="https://via.placeholder.com/400x300/00f3ff/000000?text=Photo+1" alt="旅行照片">
+            </div>
+            <div class="glass-card photo-frame">
+                <img src="https://via.placeholder.com/400x300/ff00ff/000000?text=Photo+2" alt="旅行照片">
+            </div>
+        </main>
+
+        <div class="music-player glass-card">
+            <span id="status">MUSIC: OFF</span>
+            <button class="neon-btn" onclick="toggleMusic()">PLAY / PAUSE</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="music/bg-track.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
