@@ -142,3 +142,23 @@ body {
     pointer-events: none;
     z-index: 10000;
 }
+
+/* 確保 a 標籤按鈕看起來跟原本的 button 一樣 */
+.neon-btn-s {
+    display: block;        /* 讓它撐滿寬度 */
+    text-decoration: none; /* 移除超連結底線 */
+    text-align: center;    /* 文字置中 */
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.neon-btn-s:hover {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 10px var(--neon-blue);
+}
