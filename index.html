@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小黑115.01.28~115.01.30 金門三天兩夜 | 賽博龐克風格相簿</title>
+    <title>小黑 115.01.28~01.30 金門行</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="scanlines"></div>
-
     <div class="container">
         <header class="glass-card main-header">
             <h1 class="neon-text">K-TRAVEL ARCHIVE</h1>
@@ -17,56 +16,28 @@
 
         <section class="album-entrance">
             <div class="glass-card album-card">
-                <div class="year-badge">2026</div>
+                <div class="year-badge">DAY 01</div>
                 <div class="album-info">
-                    <h3>115.01.28 小黑金門的第「一」天</h3>
+                    <h3>115.01.28 小黑金門第一天</h3>
                     <a href="day1.html" class="neon-btn-s">ENTER ARCHIVE</a>
                 </div>
             </div>
-
             <div class="glass-card album-card">
-                <div class="year-badge">2026</div>
+                <div class="year-badge">DAY 02</div>
                 <div class="album-info">
-                    <h3>115.01.29 小黑金門的第「二」天</h3>
+                    <h3>115.01.29 小黑金門第二天</h3>
                     <a href="day2.html" class="neon-btn-s">ENTER ARCHIVE</a>
                 </div>
             </div>
-
             <div class="glass-card album-card">
-                <div class="year-badge">2026</div>
+                <div class="year-badge">DAY 03</div>
                 <div class="album-info">
-                    <h3>115.01.30 小黑金門的第「三」天</h3>
+                    <h3>115.01.30 小黑金門第三天</h3>
                     <a href="day3.html" class="neon-btn-s">ENTER ARCHIVE</a>
                 </div>
             </div>
         </section>
-
-        <footer class="music-console glass-card">
-            <div class="console-header">
-                <span id="trackName" class="neon-blue-text">TRACK: 01</span>
-                <div class="speed-box">
-                    <label>SPD:</label>
-                    <select id="speedCtrl" class="neon-select" onchange="changeSpeed()">
-                        <option value="1">1.0x</option>
-                        <option value="1.5">1.5x</option>
-                        <option value="2">2.0x</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="progress-area">
-                <input type="range" id="progressBar" class="cyber-range" min="0" max="100" value="0">
-            </div>
-            
-            <div class="controls">
-                <button class="ctrl-btn" onclick="prevTrack()">⏮</button>
-                <button class="ctrl-btn main-play" id="playBtn" onclick="toggleMusic()">▶</button>
-                <button class="ctrl-btn" onclick="nextTrack()">⏭</button>
-            </div>
-        </footer>
-    </div>
-
-    <audio id="bgMusic"></audio>
+        </div>
     <script src="script.js"></script>
 </body>
 </html>

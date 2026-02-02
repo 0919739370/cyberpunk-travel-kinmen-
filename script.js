@@ -1,24 +1,28 @@
-// 這裡定義每天的檔案清單 (因為 GitHub 沒後端，需要手動列出)
-const filesData = {
-    "28": ["IMG_20260128_01.jpg", "VID_20260128_02.mp4", "IMG_20260128_03.jpg"],
-    "29": ["IMG_20260129_01.jpg"],
-    "30": ["IMG_20260130_01.jpg"]
-};
-
+// --- 相簿自動產生邏輯 ---
 function renderGallery(day) {
     const grid = document.getElementById('gallery-grid');
-    const files = filesData[day];
+    if(!grid) return;
+
+    // 因為 GitHub Pages 無法自動讀取資料夾，白鳥你需要把檔名清單填在這裡
+    // 檔名範例：直接從你的檔案總管複製過來即可
+    const data = {
+        "28": ["IMG_20260128_084422948_HDR.jpg", "VID_20260128_141227005.mp4"],
+        "29": ["IMG_20260129_092933938_HDR.jpg", "VID_20260129_090657319.mp4"],
+        "30": ["IMG_20260130_134712637_HDR.jpg", "VID_20260130_140049688.mp4"]
+    };
+
+    const files = data[day];
 
     files.forEach(fileName => {
         const item = document.createElement('div');
         item.className = 'glass-card media-item';
         
-        // 取得不含副檔名的純檔名
-        const displayName = fileName.split('.').shift();
-        const isVideo = fileName.endsWith('.mp4');
+        // 去除副檔名 (顯示副檔名前面的文字)
+        const displayName = fileName.split('.').slice(0, -1).join('.');
+        const isVideo = fileName.toLowerCase().endsWith('.mp4');
 
         let mediaHtml = isVideo 
-            ? `<video muted><source src="image/${day}/${fileName}" type="video/mp4"></video>`
+            ? `<video muted loop onmouseover="this.play()" onmouseout="this.pause()"><source src="image/${day}/${fileName}" type="video/mp4"></video>`
             : `<img src="image/${day}/${fileName}">`;
 
         item.innerHTML = `
