@@ -185,3 +185,28 @@ body {
 @media (max-width: 768px) {
     .neon-text { font-size: 1.5em; }
 }
+
+/* 時間碼顯示樣式 */
+.time-code {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+/* 強化霓虹燈文字曲目標題 */
+#trackName {
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: neon-flicker 2s infinite alternate;
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+    }
+    20%, 22%, 24%, 55% {
+        text-shadow: none;
+        opacity: 0.7;
+    }
+}
