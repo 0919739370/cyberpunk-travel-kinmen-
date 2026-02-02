@@ -1,164 +1,43 @@
-:root {
-    --neon-blue: #00f3ff;
-    --neon-pink: #ff00ff;
-    --dark-bg: #050505;
-    --glass: rgba(255, 255, 255, 0.05);
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: #fff;
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-    overflow-x: hidden;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px 20px 150px 20px;
-}
-
-/* 磨砂玻璃卡片 */
-.glass-card {
-    background: var(--glass);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(0, 243, 255, 0.2);
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.neon-text {
-    color: var(--neon-blue);
-    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
-    text-align: center;
-    letter-spacing: 4px;
-}
-
-/* 相簿卡片特殊樣式 */
-.album-entrance {
+/* 5x4 網格系統 */
+.gallery-grid-5x4 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(5, 1fr); /* 一排5個 */
+    grid-auto-rows: 200px;                 /* 每列高度固定 */
+    gap: 15px;                             /* 間距 */
+    margin-top: 30px;
 }
 
-.album-card {
+.media-item {
     position: relative;
     overflow: hidden;
-    transition: 0.3s;
-    border: 1px solid rgba(255, 0, 255, 0.2);
-}
-
-.album-card:hover {
-    border-color: var(--neon-pink);
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
-}
-
-.year-badge {
-    position: absolute;
-    top: 15px;
-    right: -35px;
-    background: var(--neon-pink);
-    color: #000;
-    padding: 5px 40px;
-    transform: rotate(45deg);
-    font-weight: bold;
-    font-size: 12px;
-}
-
-/* 霓虹按鈕 */
-.neon-btn-s {
-    background: transparent;
     border: 1px solid var(--neon-blue);
-    color: var(--neon-blue);
-    padding: 8px 15px;
-    cursor: pointer;
-    margin-top: 15px;
-    width: 100%;
-}
-
-.neon-btn-s:hover {
-    background: var(--neon-blue);
-    color: #000;
-    box-shadow: 0 0 10px var(--neon-blue);
-}
-
-/* 音樂主機介面 */
-.music-console {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 500px;
-    z-index: 1000;
-}
-
-.console-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.cyber-range {
-    width: 100%;
-    height: 5px;
-    accent-color: var(--neon-blue);
-    background: #222;
-    outline: none;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 15px;
-}
-
-.ctrl-btn {
-    background: none;
-    border: 1px solid var(--neon-pink);
-    color: var(--neon-pink);
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.neon-select {
     background: #000;
+}
+
+.media-item img, .media-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 讓不同比例的照片能填滿方塊 */
+    transition: transform 0.3s;
+}
+
+.file-name {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
     color: var(--neon-blue);
-    border: 1px solid var(--neon-blue);
+    font-size: 10px;
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* 檔名太長顯示... */
 }
 
-/* 掃描線效果 */
-.scanlines {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-    background-size: 100% 3px, 3px 100%;
-    pointer-events: none;
-    z-index: 10000;
-}
-
-/* 確保 a 標籤按鈕看起來跟原本的 button 一樣 */
-.neon-btn-s {
-    display: block;        /* 讓它撐滿寬度 */
-    text-decoration: none; /* 移除超連結底線 */
-    text-align: center;    /* 文字置中 */
-    background: transparent;
-    border: 1px solid var(--neon-blue);
-    color: var(--neon-blue);
-    padding: 8px 15px;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: 0.3s;
-}
-
-.neon-btn-s:hover {
-    background: var(--neon-blue);
-    color: #000;
-    box-shadow: 0 0 10px var(--neon-blue);
+/* 手機版自動調整 */
+@media (max-width: 768px) {
+    .gallery-grid-5x4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

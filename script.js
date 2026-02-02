@@ -1,58 +1,31 @@
-const music = document.getElementById('bgMusic');
-const progressBar = document.getElementById('progressBar');
-const trackName = document.getElementById('trackName');
-const speedCtrl = document.getElementById('speedCtrl');
-
-// 準備 5 首歌的路徑
-const playlist = [
-    "music/song1.mp3",
-    "music/song2.mp3",
-    "music/song3.mp3",
-    "music/song4.mp3",
-    "music/song5.mp3"
-];
-
-let currentTrack = 0;
-
-// 初始化播放器
-function loadTrack(index) {
-    music.src = playlist[index];
-    trackName.innerText = `TRACK: 0${index + 1}`;
-}
-
-loadTrack(currentTrack);
-
-function toggleMusic() {
-    music.paused ? music.play() : music.pause();
-}
-
-function nextTrack() {
-    currentTrack = (currentTrack + 1) % playlist.length;
-    loadTrack(currentTrack);
-    music.play();
-}
-
-function prevTrack() {
-    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-    loadTrack(currentTrack);
-    music.play();
-}
-
-function changeSpeed() {
-    music.playbackRate = speedCtrl.value;
-}
-
-// 更新進度條
-music.ontimeupdate = () => {
-    const progress = (music.currentTime / music.duration) * 100;
-    progressBar.value = progress || 0;
+// 這裡定義每天的檔案清單 (因為 GitHub 沒後端，需要手動列出)
+const filesData = {
+    "28": ["IMG_20260128_01.jpg", "VID_20260128_02.mp4", "IMG_20260128_03.jpg"],
+    "29": ["IMG_20260129_01.jpg"],
+    "30": ["IMG_20260130_01.jpg"]
 };
 
-// 拖動進度條
-progressBar.oninput = () => {
-    const time = (progressBar.value / 100) * music.duration;
-    music.currentTime = time;
-};
+function renderGallery(day) {
+    const grid = document.getElementById('gallery-grid');
+    const files = filesData[day];
 
-// 播完自動下一首
-music.onended = () => { nextTrack(); };
+    files.forEach(fileName => {
+        const item = document.createElement('div');
+        item.className = 'glass-card media-item';
+        
+        // 取得不含副檔名的純檔名
+        const displayName = fileName.split('.').shift();
+        const isVideo = fileName.endsWith('.mp4');
+
+        let mediaHtml = isVideo 
+            ? `<video muted><source src="image/${day}/${fileName}" type="video/mp4"></video>`
+            : `<img src="image/${day}/${fileName}">`;
+
+        item.innerHTML = `
+            ${mediaHtml}
+            <div class="file-name">${displayName}</div>
+        `;
+        
+        grid.appendChild(item);
+    });
+}
