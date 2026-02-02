@@ -74,4 +74,16 @@ function renderGallery(day) {
         item.innerHTML = `${mediaHtml}<div class="file-name">${displayName}</div>`;
         grid.appendChild(item);
     });
+// 更新進度條與時間碼的關鍵邏輯
+music.ontimeupdate = () => {
+    if (music.duration) {
+        // 更新進度條
+        if(progressBar) progressBar.value = (music.currentTime / music.duration) * 100;
+        
+        // 更新 00:00 / 00:00 文字顯示
+        if(timeDisplay) {
+            timeDisplay.innerText = `${formatTime(music.currentTime)} / ${formatTime(music.duration)}`;
+        }
+    }
+};
 }

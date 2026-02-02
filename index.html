@@ -40,9 +40,12 @@
 
         <footer class="music-console glass-card">
             <div class="console-header">
-                <span id="trackName" class="neon-blue-text">TRACK: 01</span>
+                <div class="track-info">
+                    <span class="glitch-label">SYSTEM_AUDIO:</span>
+                    <span id="trackName" class="neon-blue-text">NOW PLAYING: TRACK_01</span>
+                </div>
+                <div class="time-code neon-blue-text" id="timeDisplay">00:00 / 00:00</div>
                 <div class="speed-box">
-                    <label style="font-size: 10px; color: var(--neon-blue);">SPD:</label>
                     <select id="speedCtrl" class="neon-select" onchange="changeSpeed()">
                         <option value="1">1.0x</option>
                         <option value="1.5">1.5x</option>
@@ -56,12 +59,16 @@
             </div>
             
             <div class="controls">
+                <button class="ctrl-btn" onclick="skip(-10)">-10s</button>
                 <button class="ctrl-btn" onclick="prevTrack()">⏮</button>
                 <button class="ctrl-btn main-play" id="playBtn" onclick="toggleMusic()">▶</button>
                 <button class="ctrl-btn" onclick="nextTrack()">⏭</button>
+                <button class="ctrl-btn" onclick="skip(10)">+10s</button>
             </div>
         </footer>
-    </div> <audio id="bgMusic"></audio>
+    </div>
+
+    <audio id="bgMusic"></audio>
     <script src="script.js"></script>
 </body>
 </html>
