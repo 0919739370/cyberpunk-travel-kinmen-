@@ -1,46 +1,70 @@
-<div class="container">
-    <header class="glass-card">
-        <h1 class="neon-text">K-TRAVEL ARCHIVE</h1>
-        <p>數位旅行紀錄庫</p>
-    </header>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-TRAVEL ARCHIVE | 賽博主機</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="scanlines"></div>
 
-    <section class="album-entrance">
-        <div class="glass-card album-card">
-            <div class="year-badge">2024</div>
-            <h3>金門：戰地風情</h3>
-            <button class="neon-btn">進入相簿</button>
-        </div>
-        <div class="glass-card album-card">
-            <div class="year-badge">2025</div>
-            <h3>金門：夏日跳島</h3>
-            <button class="neon-btn">進入相簿</button>
-        </div>
-        <div class="glass-card album-card">
-            <div class="year-badge">2026</div>
-            <h3>金門：數位足跡</h3>
-            <button class="neon-btn">進入相簿</button>
-        </div>
-    </section>
+    <div class="container">
+        <header class="glass-card main-header">
+            <h1 class="neon-text">K-TRAVEL ARCHIVE</h1>
+            <p class="sub-text">數位旅行紀錄庫 // DIGITAL FOOTPRINT</p>
+        </header>
 
-    <footer class="music-console glass-card">
-        <div class="track-info">
-            <span id="trackName">TRACK: 01</span>
-            <div class="progress-container">
-                <input type="range" id="progressBar" min="0" max="100" value="0">
+        <section class="album-entrance">
+            <div class="glass-card album-card">
+                <div class="year-badge">2024</div>
+                <div class="album-info">
+                    <h3>金門：戰地風情</h3>
+                    <button class="neon-btn-s">ENTER ARCHIVE</button>
+                </div>
             </div>
-        </div>
-        
-        <div class="controls">
-            <button class="ctrl-btn" onclick="prevTrack()">⏮</button>
-            <button class="ctrl-btn main-play" onclick="toggleMusic()">▶/⏸</button>
-            <button class="ctrl-btn" onclick="nextTrack()">⏭</button>
-            <select id="speedCtrl" class="neon-select" onchange="changeSpeed()">
-                <option value="1">1.0x</option>
-                <option value="1.5">1.5x</option>
-                <option value="2">2.0x</option>
-            </select>
-        </div>
-    </footer>
-</div>
+            <div class="glass-card album-card">
+                <div class="year-badge">2025</div>
+                <div class="album-info">
+                    <h3>金門：夏日跳島</h3>
+                    <button class="neon-btn-s">ENTER ARCHIVE</button>
+                </div>
+            </div>
+            <div class="glass-card album-card">
+                <div class="year-badge">2026</div>
+                <div class="album-info">
+                    <h3>金門：數位足跡</h3>
+                    <button class="neon-btn-s">ENTER ARCHIVE</button>
+                </div>
+            </div>
+        </section>
 
-<audio id="bgMusic"></audio>
+        <footer class="music-console glass-card">
+            <div class="console-header">
+                <span id="trackName" class="neon-blue-text">TRACK: 01</span>
+                <div class="speed-box">
+                    <label>SPD:</label>
+                    <select id="speedCtrl" class="neon-select" onchange="changeSpeed()">
+                        <option value="1">1.0x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2.0x</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="progress-area">
+                <input type="range" id="progressBar" class="cyber-range" min="0" max="100" value="0">
+            </div>
+            
+            <div class="controls">
+                <button class="ctrl-btn" onclick="prevTrack()">⏮</button>
+                <button class="ctrl-btn main-play" id="playBtn" onclick="toggleMusic()">▶</button>
+                <button class="ctrl-btn" onclick="nextTrack()">⏭</button>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="bgMusic"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
