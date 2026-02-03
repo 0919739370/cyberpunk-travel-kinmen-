@@ -2,18 +2,51 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>DAY 03 - 115.01.30</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAY 01 - 115.01.30 // 小黑金門行</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="renderGallery('28')">
+<body onload="renderGallery('30')">
     <div class="scanlines"></div>
     <div class="container">
         <header class="glass-card">
             <h1 class="neon-text">115.01.30 // DAY 03</h1>
             <a href="index.html" class="neon-btn-s" style="width: 120px; margin: 10px auto;">BACK</a>
         </header>
+
         <main id="gallery-grid" class="gallery-grid-5x4"></main>
+
+        <footer class="music-console glass-card">
+            <div class="console-header">
+                <div class="track-info">
+                    <span class="glitch-label">SYSTEM_AUDIO:</span>
+                    <span id="trackName" class="neon-blue-text">NOW PLAYING: TRACK_01</span>
+                </div>
+                <div class="time-code neon-blue-text" id="timeDisplay">00:00 / 00:00</div>
+                <div class="speed-box">
+                    <select id="speedCtrl" class="neon-select" onchange="changeSpeed()">
+                        <option value="1">1.0x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2.0x</option>
+                    </select>
+                </div>
+            </div>
+            <div class="progress-area">
+                <input type="range" id="progressBar" class="cyber-range" min="0" max="100" value="0">
+            </div>
+            <div class="controls">
+                <button class="ctrl-btn" onclick="skip(-10)">-10s</button>
+                <button class="ctrl-btn" onclick="prevTrack()">⏮</button>
+                <button class="ctrl-btn main-play" id="playBtn" onclick="toggleMusic()">▶</button>
+                <button class="ctrl-btn" onclick="nextTrack()">⏭</button>
+                <button class="ctrl-btn" onclick="skip(10)">+10s</button>
+            </div>
+        </footer>
     </div>
+    <audio id="bgMusic"></audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

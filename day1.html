@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAY 01 - 115.01.28 // 小黑金門行</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="renderGallery('28')">
     <div class="scanlines"></div>
-    
     <div class="container">
         <header class="glass-card">
             <h1 class="neon-text">115.01.28 // DAY 01</h1>
@@ -32,18 +32,21 @@
                     </select>
                 </div>
             </div>
-            
             <div class="progress-area">
                 <input type="range" id="progressBar" class="cyber-range" min="0" max="100" value="0">
             </div>
-            
             <div class="controls">
-                <button class="ctrl-btn" onclick="skip(-10)">-10s</button> <button class="ctrl-btn" onclick="prevTrack()">⏮</button>
+                <button class="ctrl-btn" onclick="skip(-10)">-10s</button>
+                <button class="ctrl-btn" onclick="prevTrack()">⏮</button>
                 <button class="ctrl-btn main-play" id="playBtn" onclick="toggleMusic()">▶</button>
                 <button class="ctrl-btn" onclick="nextTrack()">⏭</button>
-                <button class="ctrl-btn" onclick="skip(10)">+10s</button> </div>
+                <button class="ctrl-btn" onclick="skip(10)">+10s</button>
+            </div>
         </footer>
-    </div> <audio id="bgMusic"></audio>
+    </div>
+    <audio id="bgMusic"></audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

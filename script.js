@@ -2,7 +2,7 @@ const music = document.getElementById('bgMusic');
 const playBtn = document.getElementById('playBtn');
 const progressBar = document.getElementById('progressBar');
 const trackName = document.getElementById('trackName');
-const timeDisplay = document.getElementById('timeDisplay'); // 時間顯示元件
+const timeDisplay = document.getElementById('timeDisplay');
 const speedCtrl = document.getElementById('speedCtrl');
 
 const playlist = ["music/song1.mp3", "music/song2.mp3", "music/song3.mp3", "music/song4.mp3", "music/song5.mp3"];
@@ -15,17 +15,14 @@ function loadTrack(index) {
 }
 loadTrack(currentTrack);
 
-// 格式化時間 (秒 -> 00:00)
 function formatTime(seconds) {
+    if (!seconds) return "00:00";
     let min = Math.floor(seconds / 60);
     let sec = Math.floor(seconds % 60);
     return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
 }
 
-// 倒退或快進功能
-function skip(seconds) {
-    music.currentTime += seconds;
-}
+function skip(seconds) { music.currentTime += seconds; }
 
 function toggleMusic() {
     if (music.paused) { music.play(); playBtn.innerText = "⏸"; } 
@@ -36,23 +33,17 @@ function nextTrack() { currentTrack = (currentTrack + 1) % playlist.length; load
 function prevTrack() { currentTrack = (currentTrack - 1 + playlist.length) % playlist.length; loadTrack(currentTrack); music.play(); playBtn.innerText = "⏸"; }
 function changeSpeed() { music.playbackRate = speedCtrl.value; }
 
-// 更新進度條與時間碼
 music.ontimeupdate = () => {
     if (music.duration) {
-        const progress = (music.currentTime / music.duration) * 100;
-        progressBar.value = progress;
-        // 更新 00:00 / 00:00 顯示
-        timeDisplay.innerText = `${formatTime(music.currentTime)} / ${formatTime(music.duration)}`;
+        if(progressBar) progressBar.value = (music.currentTime / music.duration) * 100;
+        if(timeDisplay) timeDisplay.innerText = `${formatTime(music.currentTime)} / ${formatTime(music.duration)}`;
     }
 };
 
-progressBar.oninput = () => {
-    music.currentTime = (progressBar.value / 100) * music.duration;
-};
-
+progressBar.oninput = () => { music.currentTime = (progressBar.value / 100) * music.duration; };
 music.onended = () => { nextTrack(); };
 
-// --- 相簿自動產生邏輯 (維持不變) ---
+// 相簿自動產生邏輯
 function renderGallery(day) {
     const grid = document.getElementById('gallery-grid');
     if(!grid) return;
@@ -63,27 +54,19 @@ function renderGallery(day) {
     };
     const files = data[day];
     if(!files) return;
+
     files.forEach(fileName => {
         const item = document.createElement('div');
         item.className = 'glass-card media-item';
         const displayName = fileName.split('.').slice(0, -1).join('.');
         const isVideo = fileName.toLowerCase().endsWith('.mp4');
+
+        // 照片加上 data-lightbox 以實現縮放，影片加上 controls
         let mediaHtml = isVideo 
-            ? `<video muted loop onmouseover="this.play()" onmouseout="this.pause()"><source src="image/${day}/${fileName}" type="video/mp4"></video>`
-            : `<img src="image/${day}/${fileName}">`;
+            ? `<video controls preload="metadata"><source src="image/${day}/${fileName}" type="video/mp4"></video>`
+            : `<a href="image/${day}/${fileName}" data-lightbox="roadtrip" data-title="${displayName}"><img src="image/${day}/${fileName}" loading="lazy"></a>`;
+
         item.innerHTML = `${mediaHtml}<div class="file-name">${displayName}</div>`;
         grid.appendChild(item);
     });
-// 更新進度條與時間碼的關鍵邏輯
-music.ontimeupdate = () => {
-    if (music.duration) {
-        // 更新進度條
-        if(progressBar) progressBar.value = (music.currentTime / music.duration) * 100;
-        
-        // 更新 00:00 / 00:00 文字顯示
-        if(timeDisplay) {
-            timeDisplay.innerText = `${formatTime(music.currentTime)} / ${formatTime(music.duration)}`;
-        }
-    }
-};
 }

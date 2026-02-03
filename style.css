@@ -209,4 +209,51 @@ body {
         text-shadow: none;
         opacity: 0.7;
     }
+/* --- 前面保留你的定義，以下為媒體項目的修正 --- */
+
+.gallery-grid-5x4 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 強制一排5個 */
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.media-item {
+    position: relative;
+    aspect-ratio: 1 / 1; /* 正方形預覽 */
+    overflow: hidden;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #000;
+}
+
+.media-item img, .media-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 確保內容填滿 */
+    transition: transform 0.5s ease;
+}
+
+/* 影片控制列賽博配色 */
+video::-webkit-media-controls-panel {
+    background-color: rgba(5, 5, 5, 0.8) !important;
+}
+
+.file-name {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--neon-blue);
+    font-size: 9px;
+    padding: 3px 0;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    z-index: 5;
+}
+
+/* 手機版適應：改為一排2個 */
+@media (max-width: 900px) {
+    .gallery-grid-5x4 { grid-template-columns: repeat(2, 1fr); }
+}
 }
